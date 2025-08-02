@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
-import { ChatRoom } from '../types/ChatRoomItemTypes'; // 타입 별도 관리 권장
-import { ChatHeader } from './ChatHeader';
-import { MessageInput } from './MessageInput';
+import { ScrollView, View } from 'react-native';
+import { ChatRoomHeader } from '../../components/ChatRoomHeader/ChatRoomHeader';
+import { MessageInputBar } from '../../components/MessageInputBar/MessageInputBar';
+import { ChatRoom } from '../../types/ChatRoomItemTypes'; // 타입 별도 관리 권장
 import { MessageList } from './MessageList';
+import { styles } from './styles';
 
 export interface Message {
     id: string;
@@ -13,12 +14,12 @@ export interface Message {
     isOwnMessage: boolean;
 }
 
-interface ChatWindowProps {
+interface ChatRoomScreenProps {
     chatRoom: ChatRoom;
     onBack: () => void;
 }
 
-export function ChatWindow({ chatRoom, onBack }: ChatWindowProps) {
+export function ChatRoomScreen({ chatRoom, onBack }: ChatRoomScreenProps) {
     const [messages, setMessages] = useState<Message[]>([
         {
             id: '1',
@@ -82,31 +83,20 @@ export function ChatWindow({ chatRoom, onBack }: ChatWindowProps) {
 
     return (
         <View style={styles.container}>
-            <ChatHeader
+            <ChatRoomHeader
                 userName={chatRoom.name}
                 isOnline={chatRoom.isOnline || false}
                 onBack={onBack}
             />
 
             <ScrollView
-                style={styles.messagesContainer}
+                style={styles.messageContainer}
                 ref={scrollViewRef}
-                contentContainerStyle={{ paddingVertical: 12, paddingHorizontal: 16 }}
             >
                 <MessageList messages={messages} />
             </ScrollView>
 
-            <MessageInput onSendMessage={handleSendMessage} />
+            <MessageInputBar onSendMessage={handleSendMessage} />
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#faf8f5',
-    },
-    messagesContainer: {
-        flex: 1,
-    },
-});

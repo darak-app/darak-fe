@@ -21,12 +21,12 @@ export const styles = StyleSheet.create({
         borderTopRightRadius: 20,
     },
     ownBubble: {
-        backgroundColor: '#e9dcc9',
+        backgroundColor: '#fa98846e',
         color: '#3f3c34',
         borderBottomLeftRadius: 20,
     },
     otherBubble: {
-        backgroundColor: '#f5eee6',
+        backgroundColor: '#E8E8E8',
         color: '#3f3c34',
         borderBottomRightRadius: 20,
     },

@@ -1,145 +1,149 @@
 import { StyleSheet } from 'react-native';
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#faf8f5',
-        padding: 24,
-        justifyContent: 'center',
+        backgroundColor: '#ffffff',
     },
-    logoContainer: {
+    keyboardAvoidingView: {
+        flex: 1,
+    },
+    scrollContainer: {
+        flexGrow: 1,
+    },
+    content: {
+        flex: 1,
+        paddingHorizontal: 32,
+        paddingVertical: 48,
+        maxWidth: 394,
+        alignSelf: 'center',
+        width: '100%',
+    },
+    header: {
+        alignItems: 'center',
+        marginBottom: 48,
+        marginTop: 32,
+    },
+    titleContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+        marginBottom: 16,
+    },
+    title: {
+        fontSize: 32,
+        fontWeight: 'bold',
+        color: '#000000',
+    },
+    subtitle: {
+        fontSize: 16,
+        color: 'rgba(87,83,83,0.85)',
+    },
+    form: {
+        flex: 1,
+    },
+    inputContainer: {
+        marginBottom: 24,
+    },
+    label: {
+        fontSize: 14,
+        fontWeight: '500',
+        color: '#000000',
+        marginBottom: 8,
+    },
+    input: {
+        height: 48,
+        paddingHorizontal: 16,
+        backgroundColor: '#f8f8f8',
+        borderRadius: 12,
+        fontSize: 16,
+        color: '#000000',
+    },
+    passwordContainer: {
+        position: 'relative',
+    },
+    passwordInput: {
+        height: 48,
+        paddingHorizontal: 16,
+        paddingRight: 48,
+        backgroundColor: '#f8f8f8',
+        borderRadius: 12,
+        fontSize: 16,
+        color: '#000000',
+    },
+    eyeButton: {
+        position: 'absolute',
+        right: 12,
+        top: 14,
+        padding: 4,
+    },
+    loginButton: {
+        height: 48,
+        backgroundColor: '#fa9884',
+        borderRadius: 12,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginBottom: 24,
+    },
+    disabledButton: {
+        backgroundColor: '#e8856f',
+    },
+    loginButtonText: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: '500',
+    },
+    forgotPassword: {
         alignItems: 'center',
         marginBottom: 32,
     },
-    logoCircle: {
-        height: 80,
-        width: 80,
-        backgroundColor: '#FF7841',
-        borderRadius: 24,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 12,
-    },
-    logoText: {
-        fontSize: 24,
-        color: '#fff',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: '600',
-        color: '#111',
-        marginBottom: 4,
-    },
-    subtitle: {
+    forgotPasswordText: {
         fontSize: 14,
-        color: '#666',
+        color: '#fa9884',
     },
-    inputWrapper: {
+    socialSection: {
+        marginBottom: 32,
+    },
+    dividerContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: '#ffffffcc',
-        borderRadius: 16,
-        paddingHorizontal: 12,
-        paddingVertical: 10,
         marginBottom: 12,
-        borderWidth: 1,
-        borderColor: '#ffffff88',
-    },
-    icon: {
-        marginRight: 8,
-    },
-    input: {
-        flex: 1,
-        fontSize: 14,
-        color: '#111',
-    },
-    button: {
-        backgroundColor: '#FF8A26',
-        borderRadius: 16,
-        paddingVertical: 14,
-        alignItems: 'center',
-        marginVertical: 12,
-    },
-    buttonDisabled: {
-        opacity: 0.5,
-    },
-    buttonText: {
-        color: '#fff',
-        fontWeight: '600',
-    },
-    forgotButton: {
-        alignItems: 'center',
-        marginBottom: 16,
-    },
-    forgotText: {
-        fontSize: 12,
-        color: '#999',
     },
     divider: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 16,
-    },
-    dividerLine: {
         flex: 1,
         height: 1,
-        backgroundColor: '#e9dcc9',
+        backgroundColor: '#E5E7EB',
     },
     dividerText: {
-        marginHorizontal: 8,
         fontSize: 12,
-        color: '#aaa',
+        color: '#9CA3AF',
+        marginHorizontal: 16,
+        textTransform: 'uppercase',
     },
-    socialButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: '#ffffffcc',
-        borderRadius: 16,
-        paddingVertical: 12,
-        paddingHorizontal: 16,
-        marginBottom: 10,
+    googleButton: {
+        height: 48,
         borderWidth: 1,
-        borderColor: '#ffffff88',
-    },
-    socialIconFacebook: {
-        backgroundColor: '#1877F2',
-        height: 20,
-        width: 20,
-        borderRadius: 10,
+        borderColor: '#E5E7EB',
+        borderRadius: 12,
         justifyContent: 'center',
         alignItems: 'center',
-        marginRight: 12,
+        backgroundColor: 'white',
     },
-    socialIconGoogle: {
-        backgroundColor: '#EA4335',
-        height: 20,
-        width: 20,
-        borderRadius: 10,
-        justifyContent: 'center',
+    googleButtonText: {
+        fontSize: 16,
+        fontWeight: '500',
+        color: '#000000',
+    },
+    signupSection: {
         alignItems: 'center',
-        marginRight: 12,
-    },
-    socialIconText: {
-        color: '#fff',
-        fontSize: 12,
-        fontWeight: 'bold',
-    },
-    socialText: {
-        fontSize: 14,
-        color: '#333',
-    },
-    signupContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginTop: 16,
+        marginTop: 'auto',
     },
     signupText: {
-        fontSize: 12,
-        color: '#666',
+        fontSize: 14,
+        color: '#6B7280',
     },
     signupLink: {
-        fontSize: 12,
-        color: '#FF7841',
-        fontWeight: '600',
+        color: '#fa9884',
+        fontWeight: '500',
     },
 });
