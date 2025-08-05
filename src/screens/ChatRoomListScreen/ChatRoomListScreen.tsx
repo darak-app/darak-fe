@@ -32,64 +32,11 @@ export const ChatRoomListScreen = () => {
     const navigation = useNavigation<ChatScreenProps>();
 
     const [searchQuery, setSearchQuery] = useState('');
+    const [roomList, updateRoomList] = useState<Array<ChatRoom>|null>(null);
 
-    // Mock data for chat rooms
-    const chatRooms: ChatRoom[] = [
-        {
-            id: '1',
-            name: 'Alberto Moedano',
-            lastMessage: '안녕하세요 반갑습니다 만',
-            timestamp: new Date(Date.now() - 30000),
-            unreadCount: 2,
-            isOnline: true,
-        },
-        {
-            id: '2',
-            name: '김철수',
-            lastMessage: '내일 회의 준비 완료했습니다',
-            timestamp: new Date(Date.now() - 3600000),
-            unreadCount: 1,
-            isOnline: false,
-        },
-        {
-            id: '3',
-            name: '이영희',
-            lastMessage: '사진 잘 받았어요 감사합니다!',
-            timestamp: new Date(Date.now() - 7200000),
-            isOnline: true,
-        },
-        {
-            id: '4',
-            name: '박민준',
-            lastMessage: '네, 알겠습니다!',
-            timestamp: new Date(Date.now() - 86400000),
-            unreadCount: 5,
-            isOnline: false,
-        },
-        {
-            id: '5',
-            name: '정수현',
-            lastMessage: '좋은 아이디어네요',
-            timestamp: new Date(Date.now() - 172800000),
-            isOnline: true,
-        },
-        {
-            id: '6',
-            name: '최윤서',
-            lastMessage: '오늘 일정 확인 부탁드려요',
-            timestamp: new Date(Date.now() - 259200000),
-            isOnline: false,
-        },
-    ];
-
-    const handleSelectChatRoom = (id: string) => {
-        navigation.navigate("ChatRoom", { id });
+    const handleSelectChatRoom = (roomId: string) => {
+        navigation.navigate("ChatRoom", { roomId });
     };
-
-    const filteredChatRooms = chatRooms.filter(room =>
-        room.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        room.lastMessage.toLowerCase().includes(searchQuery.toLowerCase())
-    );
 
     return (
         <SafeAreaView style={styles.safeArea}>
@@ -123,10 +70,12 @@ export const ChatRoomListScreen = () => {
                         />
                     </View>
                 </View>
-
+                if(roomList != null){
+                    
+                }
                 {/* Chat Room List */}
                 <ScrollView style={styles.chatListScrollView}>
-                    {filteredChatRooms.length === 0 ? (
+                    {(roomList != null && roomList.length === 0) ? (
                         <View style={styles.noResultsContainer}>
                             <View style={styles.noResultsIconCircle}>
                                 <Text style={styles.noResultsIcon}>🔍</Text>
@@ -140,7 +89,7 @@ export const ChatRoomListScreen = () => {
                         </View>
                     ) : (
                         <View style={styles.chatRoomItemsContainer}>
-                            {filteredChatRooms.map((chatRoom) => (
+                            {roomList != null && roomList.map((chatRoom) => (
                                 <ChatRoomItem
                                     key={chatRoom.id}
                                     chatRoom={chatRoom}

@@ -1,3 +1,5 @@
+import { ChatRoom } from "./ChatRoomItemTypes";
+
 export type AuthStackParamList = {
     Login: undefined;
     Signup: undefined;
@@ -5,5 +7,5 @@ export type AuthStackParamList = {
 
 export type ChatStackParamList = {
     ChatRoomList: undefined;
-    ChatRoom: { id: string };
+    ChatRoom: { roomId: string };
 };

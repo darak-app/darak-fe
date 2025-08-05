@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { useState } from 'react';
@@ -57,7 +57,7 @@ export function LoginScreen({ onLogin }: LoginScreenProps) {
                         {/* 헤더 */}
                         <View style={styles.header}>
                             <View style={styles.titleContainer}>
-                                <Ionicons name="heart" size={32} color="#fa9884" />
+                                
                                 <Text style={styles.title}>Figma Date</Text>
                             </View>
                             <Text style={styles.subtitle}>새로운 인연을 시작해보세요</Text>
@@ -96,11 +96,7 @@ export function LoginScreen({ onLogin }: LoginScreenProps) {
                                         onPress={() => setShowPassword(!showPassword)}
                                         style={styles.eyeButton}
                                     >
-                                        <Ionicons
-                                            name={showPassword ? "eye-off" : "eye"}
-                                            size={20}
-                                            color="#9CA3AF"
-                                        />
+                                        
                                     </TouchableOpacity>
                                 </View>
                             </View>

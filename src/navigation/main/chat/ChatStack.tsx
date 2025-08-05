@@ -6,7 +6,7 @@ import { ChatRoomScreen } from "../screens/ChatRoomScreen/ChatRoomScreen";
 const Stack = createNativeStackNavigator<ChatStackParamList>();
 
 
-export default function ChatNavigator() {
+export default function ChatStack() {
     return (
         <Stack.Navigator>
             <Stack.Screen
@@ -15,11 +15,15 @@ export default function ChatNavigator() {
 
             <Stack.Screen
                 name="ChatRoom">
-                {props => (
+                {(props) =>(
                     <ChatRoomScreen
-                        {...props}
-                        
-                    )}
+                    {...props}
+                    roomId = {props.route.params.roomId}
+                    onBack={ () => props.navigation.goBack()}
+                    ></ChatRoomScreen>
+                )
+
+                }
 
             </Stack.Screen>
         </Stack.Navigator>

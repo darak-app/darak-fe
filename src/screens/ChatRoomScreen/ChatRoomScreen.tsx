@@ -5,6 +5,8 @@ import { MessageInputBar } from '../../components/MessageInputBar/MessageInputBa
 import { ChatRoom } from '../../types/ChatRoomItemTypes'; // 타입 별도 관리 권장
 import { MessageList } from './MessageList';
 import { styles } from './styles';
+import { fetchChatRoom } from '../../services/chatService';
+import { LoadingScreen } from '../LoadingScreen/LoadingScreen';
 
 export interface Message {
     id: string;
@@ -15,35 +17,21 @@ export interface Message {
 }
 
 interface ChatRoomScreenProps {
-    chatRoom: ChatRoom;
+    roomId: string;
     onBack: () => void;
 }
 
-export function ChatRoomScreen({ chatRoom, onBack }: ChatRoomScreenProps) {
-    const [messages, setMessages] = useState<Message[]>([
-        {
-            id: '1',
-            text: '반갑습니다',
-            user: chatRoom.name,
-            timestamp: new Date(Date.now() - 60000),
-            isOwnMessage: false,
-        },
-        {
-            id: '2',
-            text: '안녕하세요 반갑습니다 만',
-            user: '나',
-            timestamp: new Date(Date.now() - 30000),
-            isOwnMessage: true,
-        },
-    ]);
+export function ChatRoomScreen({ roomId, onBack }: ChatRoomScreenProps) {
+    const [chatRoom, setChatRoom] = useState<ChatRoom|null>(null);
 
     const [currentUser] = useState('나');
     const scrollViewRef = useRef<ScrollView>(null);
 
     // 메시지 추가 시 자동 스크롤
     useEffect(() => {
+        fetchChatRoom(roomId);
         scrollViewRef.current?.scrollToEnd({ animated: true });
-    }, [messages]);
+    });
 
     const handleSendMessage = (text: string) => {
         if (!text.trim()) return;
@@ -56,31 +44,12 @@ export function ChatRoomScreen({ chatRoom, onBack }: ChatRoomScreenProps) {
             isOwnMessage: true,
         };
 
-        setMessages(prev => [...prev, newMessage]);
+    
 
-        setTimeout(() => {
-            const botResponses = [
-                '네, 알겠습니다!',
-                '좋은 생각이네요.',
-                '흥미롭군요!',
-                '더 자세히 말씀해 주세요.',
-                '동감합니다.',
-            ];
-
-            const randomResponse = botResponses[Math.floor(Math.random() * botResponses.length)];
-
-            const botMessage: Message = {
-                id: (Date.now() + 1).toString(),
-                text: randomResponse,
-                user: chatRoom.name,
-                timestamp: new Date(),
-                isOwnMessage: false,
-            };
-
-            setMessages(prev => [...prev, botMessage]);
-        }, 1000 + Math.random() * 2000);
     };
-
+    if (chatRoom == null){
+        return null;
+    }
     return (
         <View style={styles.container}>
             <ChatRoomHeader
@@ -93,7 +62,7 @@ export function ChatRoomScreen({ chatRoom, onBack }: ChatRoomScreenProps) {
                 style={styles.messageContainer}
                 ref={scrollViewRef}
             >
-                <MessageList messages={messages} />
+                
             </ScrollView>
 
             <MessageInputBar onSendMessage={handleSendMessage} />
